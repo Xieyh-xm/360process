@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import csv
 import numpy as np
 from _ctypes import PyObj_FromPtr
 
@@ -70,8 +71,23 @@ def generate_video_trace_json(size, outputPath):
 
     movie360_json_data = json.dumps(video_trace_dict, indent=4, separators=(',', ':'))
     # movie360_json_data = json.dumps(video_trace_dict)
-    with open(outputPath, 'w') as json_file:
+    with open(outputPath + "movie360.json", 'w') as json_file:
         json_file.write(movie360_json_data)
+    return
+
+
+def generate_video_trace_csv(size_of_tile, outputPath):
+    '''将tile size写入csv文件中'''
+    header = []
+    for i in range(len(BITRATE_KBPS)):
+        header.append("level_" + str(i))
+
+    with open(outputPath + "movie360.csv", 'w', newline='') as csvFile:
+        writer = csv.writer(csvFile)
+        writer.writerow(header)
+        for i in range(len(size_of_tile)):
+            writer.writerow(size_of_tile[i])
+            writer.writerow()
 
 
 # todo：改成命令行输入的形式
@@ -81,10 +97,10 @@ def main():
     size_of_tile = get_tile_size(inputPath)
     print(size_of_tile)
     # 2. 生成含video trace的movie360.json文件
-    outputPath = "video_trace/movie360.json"
+    outputPath = "video_trace/"
     generate_video_trace_json(size_of_tile, outputPath)
     # todo：增加一个csv文件的写入
-
+    generate_video_trace_csv(size_of_tile, outputPath)
 
 
 if __name__ == '__main__':
