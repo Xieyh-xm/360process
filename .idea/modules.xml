@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/360process.iml" filepath="$PROJECT_DIR$/.idea/360process.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../dash-360/.idea/dash-360.iml" filepath="$PROJECT_DIR$/../dash-360/.idea/dash-360.iml" />
       <module fileurl="file://$PROJECT_DIR$/../sabre360/.idea/sabre360.iml" filepath="$PROJECT_DIR$/../sabre360/.idea/sabre360.iml" />
     </modules>
   </component>
